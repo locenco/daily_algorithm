@@ -37,7 +37,12 @@ import org.junit.Test;
  * @Date: 2021/2/2 21:43
  **/
 public class CharacterReplacement {
-
+	/**
+	 * 自己硬编码写的算法
+	 * @param s
+	 * @param k
+	 * @return
+	 */
 	public int characterReplacement(String s, int k) {
 		if (s == null || "".equals(s)) {
 			return 0;
@@ -73,10 +78,37 @@ public class CharacterReplacement {
 		return maxSubStrLength;
 	}
 
+	/**
+	 * 网上学到的滑动窗口的思想
+	 * 初始都是0，right 往右滑动，并且保证窗口内，max + k 等于窗口大小
+	 * 当 窗口大小 right - left + 1 > max + k时
+	 * 		窗口左边界往右滑动，更新max，其实就是更新窗口大小。最终，left到最右端的距离就说最大窗口值
+	 */
+	public int characterReplacement2(String s, int k) {
+		char[] sArr = s.toCharArray();
+		int[] sCount = new int[26];
+		int left = 0;
+		int max = 0;
+		for (int right = 0; right < s.length(); right++) {
+			int index = sArr[right] - 'A';
+			sCount[index]++;
+
+			max = Math.max(sCount[index], max);
+			if (right - left + 1 > max + k) {
+				sCount[sArr[left] - 'A']--;
+				left++;
+			}
+		}
+		return sArr.length - left;
+
+	}
 	@Test
 	public void testCharacterReplacement() {
 		Assert.assertEquals(characterReplacement("ABAB", 2), 4);
 		Assert.assertEquals(characterReplacement("ABBB", 2), 4);
 		Assert.assertEquals(characterReplacement("AABABBA", 1), 4);
+		Assert.assertEquals(characterReplacement2("ABAB", 2), 4);
+		Assert.assertEquals(characterReplacement2("ABBB", 2), 4);
+		Assert.assertEquals(characterReplacement2("AABABBA", 1), 4);
 	}
 }
