@@ -1,4 +1,4 @@
-package top.macondo.aigorithm.daliy;
+package top.macondo.aigorithm.daily;
 
 import org.junit.Assert;
 import org.junit.Test;
