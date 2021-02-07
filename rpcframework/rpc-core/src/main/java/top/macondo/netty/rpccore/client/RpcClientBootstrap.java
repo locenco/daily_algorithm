@@ -1,6 +1,5 @@
 package top.macondo.netty.rpccore.client;
 
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
