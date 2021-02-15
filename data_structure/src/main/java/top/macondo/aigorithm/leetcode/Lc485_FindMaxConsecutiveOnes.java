@@ -1,4 +1,4 @@
-package top.macondo.aigorithm.daily;
+package top.macondo.aigorithm.leetcode;
 
 import org.junit.Assert;
 import org.junit.Test;
