@@ -1,5 +1,7 @@
 package top.macondo.aigorithm.jz;
 
+import java.util.HashMap;
+
 /**
  * 递归
  * @author: zhangchong
@@ -23,4 +25,18 @@ public class JZ07 {
 		}
 	}
 
+	HashMap<Integer, Integer> cache = new HashMap<>();
+	public int Fib(int n) {
+		if (cache.containsKey(n)) {
+			return cache.get(n);
+		}
+		int result;
+		if (n < 2) {
+			result = n;
+		} else {
+			result = Fib(n - 1) + Fib(n - 2);
+		}
+		cache.put(n, result);
+		return result;
+	}
 }
